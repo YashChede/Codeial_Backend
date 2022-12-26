@@ -2,6 +2,11 @@ const express = require('express');
 const port = 8000;
 const app = express();
 
+// due to warning
+const mongoose = require('mongoose');
+mongoose.set('strictQuery', true);
+
+const db = require('./config/mongoose');
 // using ejs-layouts
 const expressLayouts = require('express-ejs-layouts');
 
