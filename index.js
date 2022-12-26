@@ -4,7 +4,16 @@ const app = express();
 
 // using ejs-layouts
 const expressLayouts = require('express-ejs-layouts');
+
+// static files
+app.use(express.static('./assets'));
+
+
 app.use(expressLayouts);
+
+// extract static files
+app.set('layout extractStyles',true);
+app.set('layout extractScripts',true);
 
 // using express router
 app.use('/',require('./routes/index'));
