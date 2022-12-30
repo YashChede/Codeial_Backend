@@ -1,7 +1,7 @@
 const express = require('express');
 const port = 8000;
 const app = express();
-
+const cookieParser = require('cookie-parser');
 // due to warning
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', true);
@@ -9,6 +9,11 @@ mongoose.set('strictQuery', true);
 const db = require('./config/mongoose');
 // using ejs-layouts
 const expressLayouts = require('express-ejs-layouts');
+
+// for post request
+app.use(express.urlencoded());
+
+app.use(cookieParser());
 
 // static files
 app.use(express.static('./assets'));
