@@ -10,8 +10,12 @@ const mongoose = require('mongoose');
 mongoose.set('strictQuery', true);
 
 const db = require('./config/mongoose');
+
 // using ejs-layouts
 const expressLayouts = require('express-ejs-layouts');
+
+// Mongo store
+const MongoStore = require('connect-mongo');
 
 // for post request
 app.use(express.urlencoded());
@@ -41,7 +45,15 @@ app.use(session({
     resave : false,
     cookie : {
         maxAge : (1000 * 60 * 100)
-    }
+    },
+    // use mongo store to store the session cookie in db
+    store :  MongoStore.create({
+        mongoUrl : 'mongodb://localhost/codeial_development',
+        autoRemove : 'disabled'
+    },function(err){
+        if (err)
+        console.log(err || 'connect-mongodb setup');
+    })
 }));
 
 app.use(passport.initialize());
