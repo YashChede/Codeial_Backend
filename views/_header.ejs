@@ -1,19 +1,30 @@
-<header>
-    PAGE HEADER
-    <ul>
-        <% if(locals.user) { %>
-              <li> <%= user.name %> </li>
-              <li>
-                <a href="/users/signout"> SIGN OUT </a>
-              </li>
-       <% } else { %>
-           <li>
-            <a href="/users/signin"> SIGN IN </a>
-           </li>
-           <li>
-            <a href="/users/signup"> SIGN UP </a>
-           </li>
-     <%  }  %>
-
-    </ul>
+<header id="main1">
+  
+    <div id="logo">
+      <img src="/images/images.png" id="logoi">
+    </div>
+    <div id="options">
+      <% if(locals.user) { %>
+        <div id="name" class="textdec">
+            <%= user.name %>
+        </div>
+        <div id="signout" class="textdec">
+          <a href="/users/signout">
+            SIGN OUT
+          </a>
+        </div>
+     <% } else { %>
+      <div id="signin" class="textdec">
+         <a href="/users/signin">SIGN IN
+         </a>
+      </div>
+      <div id="signup" class="textdec">
+        <a href="/users/signup">
+          SIGN UP
+        </a>
+      </div>
+     <% } %>
+     
+    </div>
 </header>
+
