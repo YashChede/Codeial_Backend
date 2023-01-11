@@ -6,10 +6,12 @@
   <h4>
        POSTS
   </h4>
+  <% if (locals.user) { %>
   <form action="/posts/create" id="new-post-form" method="post">
        <textarea name="content" cols="30" rows="3" placeholder="type here..."></textarea>
        <input type="submit" value="Post">
   </form>
+  <% } %>
   <div id="posts-list-container">
    <ul>
        <% for (post of posts) { %> 
@@ -18,7 +20,7 @@
                      <%= post.content %>
                      <br>
                      <small>
-                     <%= post.user.name %>
+                     <%= post.user.name %> 
                      </small>
               </p>
               </li>
