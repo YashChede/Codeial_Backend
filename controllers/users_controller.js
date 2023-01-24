@@ -1,10 +1,25 @@
 const User = require('../models/user');
 const passport = require('passport');
 module.exports.profile = function(req,res){
- return res.render('users',{
-    title : 'PROFILE'
- });
+  User.findById(req.params.id,function(err,user){
+   return res.render('users',{
+      title : 'PROFILE',
+      profile_user : user
+   });
+  });
 };
+
+// for updation
+module.exports.update = function(req,res){
+  if (req.params.id == req.user.id){
+   // req.body == {name : req.body.name , email : req.body.email}
+   User.findByIdAndUpdate(req.params.id,req.body,function(err,user){
+      return res.redirect('back');
+   });
+  }else{
+   return res.status(401).send('Unauthorized');
+  }
+}
 
 // for sign in
 module.exports.signIn = function(req,res){

@@ -2,6 +2,17 @@
        <h1>
             USERS PROFILE PAGE
         </h1>
-  <p> <%= user.name %> </p>
-  <p> <%= user.email %> </p>
+    <!-- no need to check locals part as user is already logged in -->
+        <% if (user.id == profile_user.id) { %>
+          <!-- if user matches then show the form -->
+          <form action="/users/update/<%= profile_user.id %>" method="post">
+             <input type="text" name="name" placeholder="Your Name" value="<%= profile_user.name %>" required>
+             <input type="text" name="email" placeholder="Your email" value="<%= profile_user.email %>" required>
+             <input type="submit" value="UPDATE" >
+          </form>
+       <% } else { %>
+        <!-- show only profile info -->
+            <p> <%= profile_user.name %> </p>
+            <p> <%= profile_user.email %> </p>
+       <% } %>
         

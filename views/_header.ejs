@@ -6,7 +6,7 @@
     <div id="options">
       <% if(locals.user) { %>
         <div id="name" class="textdec">
-          <a href="/users/profile">  <%= user.name %>
+          <a href="/users/profile/<%= user.id %>">  <%= user.name %>
             </a>
         </div>
         <div id="signout" class="textdec">
