@@ -38,6 +38,8 @@ app.use(cookieParser());
 // static files
 app.use(express.static('./assets'));
 
+// making uploads folder accessible by the browser
+app.use('/uploads',express.static(__dirname + '/uploads'));
 
 app.use(expressLayouts);
 

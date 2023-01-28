@@ -10,15 +10,44 @@ module.exports.profile = function(req,res){
 };
 
 // for updation
-module.exports.update = function(req,res){
-  if (req.params.id == req.user.id){
-   // req.body == {name : req.body.name , email : req.body.email}
-   User.findByIdAndUpdate(req.params.id,req.body,function(err,user){
-      return res.redirect('back');
-   });
-  }else{
-   return res.status(401).send('Unauthorized');
-  }
+module.exports.update = async function(req,res){
+//   if (req.params.id == req.user.id){
+//    // req.body == {name : req.body.name , email : req.body.email}
+//    User.findByIdAndUpdate(req.params.id,req.body,function(err,user){
+//       req.flash('success','Updated!');
+//       return res.redirect('back');
+//    });
+//   }else{
+//    req.flash('error','Unauthorized');
+//    return res.status(401).send('Unauthorized');
+//   }
+
+   if (req.params.id == req.user.id){
+      try{
+         let user = await User.findById(req.params.id);
+         // we can not access body as it is multipart data so we require multer
+         //  we use multer as storage has req also a parameter
+         User.uploadedAvatar(req,res,function(err){
+            if (err) console.log('MULTER error',err);
+            user.name = req.body.name;
+            user.email = req.body.email;
+            if (req.file){
+               // saving the path of the uploaded file into the avatar field in the user
+               user.avatar = User.avatarPath + '/' + req.file.filename;
+            }
+            user.save();
+            req.flash('success','Updated!');
+            return res.redirect('back');
+         });
+      }catch (err){
+        req.flash('error','not');
+        return res.redirect('back');
+      }
+
+   }else {
+      req.flash('error','Unauthorized');
+      return res.status(401).send('Unauthorized');
+   }
 }
 
 // for sign in
