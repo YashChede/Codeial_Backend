@@ -1,5 +1,10 @@
 const User = require('../models/user');
 const passport = require('passport');
+const path = require('path');
+
+// for replacing the avatar image
+const fs = require('fs');
+
 module.exports.profile = function(req,res){
   User.findById(req.params.id,function(err,user){
    return res.render('users',{
@@ -32,7 +37,12 @@ module.exports.update = async function(req,res){
             user.name = req.body.name;
             user.email = req.body.email;
             if (req.file){
+
                // saving the path of the uploaded file into the avatar field in the user
+               if (user.avatar){
+                  fs.unlinkSync(path.join(__dirname,'..',user.avatar));
+               }
+
                user.avatar = User.avatarPath + '/' + req.file.filename;
             }
             user.save();
