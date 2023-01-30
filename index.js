@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const passportLocal = require('./config/passport_local_strategy');
 const passportJWT = require('./config/passport_jwt_strategy');
+const passportGoogle = require('./config/passport_google_oauth2_strategy');
 const session = require('express-session');
 const sassMiddleware = require('node-sass-middleware');
 // due to warning

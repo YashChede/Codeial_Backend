@@ -14,5 +14,14 @@ router.post('/create-session',passport.authenticate(
     'local',
     {failureRedirect : '/users/signin'}
 ),userController.createSession);
+
+// google authentication
+// scope is the information we want to fetch
+router.get('/auth/google',passport.authenticate('google',{scope : ['profile','email']}));
+
+router.get('/auth/google/callback',passport.authenticate('google',
+   { failureRedirect : '/users/signin'}
+),userController.createSession);
+
 router.get('/signout',userController.destroySession);
 module.exports = router;
