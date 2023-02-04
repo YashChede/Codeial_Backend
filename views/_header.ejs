@@ -1,31 +1,35 @@
-<header id="main1">
+<header id="layout-header">
+  <nav>
+      <div class="mini-logo">
+          <p>
+              <a href='/'>
+                  codeial
+              </a>
+          </p>
+      </div>
   
-    <div id="logo">
-      <img src="/images/images.png" id="logoi">
-    </div>
-    <div id="options">
-      <% if(locals.user) { %>
-        <div id="name" class="textdec">
-          <a href="/users/profile/<%= user.id %>">  <%= user.name %>
-            </a>
-        </div>
-        <div id="signout" class="textdec">
-          <a href="/users/signout">
-            SIGN OUT
-          </a>
-        </div>
-     <% } else { %>
-      <div id="signin" class="textdec">
-         <a href="/users/signin">SIGN IN
-         </a>
+      <div class="auth-links">
+          <ul>
+              <% if (locals.user){ %>
+              <li>
+                  <a href="/users/profile/<%= user.id %>"><%= user.name %></a>
+              </li>
+              <li>
+                  <a href="/users/sign-out">Sign Out</a>
+              </li>
+              <% }else{ %>
+              <li>
+                  <a href="/users/sign-in">Sign In</a>
+              </li>
+              <li>
+                  <a href="/users/sign-up">Sign Up</a>
+              </li>
+      
+              <% } %>
+          </ul>
       </div>
-      <div id="signup" class="textdec">
-        <a href="/users/signup">
-          SIGN UP
-        </a>
-      </div>
-     <% } %>
-     
-    </div>
-</header>
+  </nav>
 
+
+
+</header>

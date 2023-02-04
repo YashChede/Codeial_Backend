@@ -1,13 +1,8 @@
 body{
     margin: 0;
-}
+    /* text-align: center; */
 
-#main{
-    margin: 0;
-    background-color: lightgray;
-    width: 100vw;
-    height: 100vh;
-    font-weight: 600;
-    font-size: large;
-   
+    #layout-main{
+        height: 100%;
+    }
 }

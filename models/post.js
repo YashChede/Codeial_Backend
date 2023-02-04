@@ -15,7 +15,8 @@ const postSchema = new mongoose.Schema({
         ref : 'Comment'
     } ]
 },{
-     timestamps : true
+     timestamps : true,
+     toJSON: {virtuals: true}
 });
 
 const Post = mongoose.model('Post',postSchema);

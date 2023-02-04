@@ -18,7 +18,7 @@ const db = require('./config/mongoose');
 const expressLayouts = require('express-ejs-layouts');
 
 // Mongo store
-const MongoStore = require('connect-mongo');
+const MongoStore = new require('connect-mongo');
 
 const flash = require('connect-flash');
 const customMware = require('./config/middleware');

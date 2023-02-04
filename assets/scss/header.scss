@@ -1,35 +1,35 @@
-#main1{
-    width: 100vw;
-    height: 10vh;
-    margin: 0;
-    background-color: rgb(61, 86, 227);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-#logo{
-   height: 100%;
-   width: 15%;
-}
-#logoi{
-    height: 100%;
-    width: 100%;
-}
-#options{
-    height: 100%;
-    width: 10%;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-div a{
-    color: white;
-    text-decoration: none;
-}
-.textdec{
-    color: white;
-    font-weight: 400;
-    font-size: larger;
-    font-family: 'Times New Roman', Times, serif;
+#layout-header{
+    nav{
+        display: flex;
+        justify-content: space-between;
+        padding: 0 10px;
+        background: #2196f3;
+        color: white;
+        box-shadow: 1px 1px 1px 1px lightgrey;
 
+        .mini-logo{
+            p{
+                margin: 5px;
+                font-size: 1.4rem;
+                font-weight: bold;
+            }
+        }
+
+        .auth-links{
+            ul{
+                margin: 5% 5px;
+                display: flex;
+                list-style: none;
+                li{
+                    margin-right: 10px;
+                }
+            }
+        }
+
+        a{
+            color: white;
+            text-decoration: none;
+        }
+
+    }
 }
