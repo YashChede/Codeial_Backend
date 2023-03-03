@@ -1,16 +1,36 @@
 <li id="comment-<%= comment._id %>">
-       <p>
-           <% if (locals.user && locals.user.id == comment.user.id){ %>
-           
-           <small>
-               <a class="delete-comment-button" href="/comments/destroy/<%= comment.id %>">X</a>
-           </small>
-           <% } %>
-           <%= comment.content %>
-           <br>
-           <small>
-               <%= comment.user.name %>
-           </small>
-       </p>    
+    <p>
+        <% if (locals.user && locals.user.id == comment.user._id){ %>
+        
+        <small>
+            <a class="delete-comment-button" href="/comments/destroy/<%= comment.id %>"> 
+                <img src="https://cdn-icons-png.flaticon.com/128/3405/3405244.png"
+                height="18px" width="18px"></a>
+        </small>
+        <% } %>
+        <span style="font-size: 18px; font-weight: 500; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif" ><%= comment.content %>
+        </span>
+        <br>
+
+         <%=comment.user.email %>
+
+        <!-- CHANGE :: display the likes of this comment, if the user is logged in, then show the link to toggle likes, else, just show the count -->
+        <!-- study about the data attribute -->
+        <small>
+            <% if (locals.user){ %>
+             <a style="font-size: 18px; text-decoration: none; color: black; font-weight: 500;" class="toggle-like-button" data-likes="<%= comment.likes.length %>" href="/likes/toggle/?id=<%=comment._id%>&type=Comment">
+                        <%= comment.likes.length %><img src="https://cdn-icons-png.flaticon.com/128/1077/1077035.png"
+                        height="18px" width="18px" style="margin-left:7px"> </a>
+                </a>
+            <% }else{ %>
+                
+               <span style="font-size: 18px; text-decoration: none; color: black; font-weight: 500;"> <%= comment.likes.length %><img src="https://cdn-icons-png.flaticon.com/128/1077/1077035.png"
+                height="18px" width="18px" style="margin-left:7px">
+               </span>
+        
+            <% } %>
+        </small>
+
+    </p>    
 
 </li>

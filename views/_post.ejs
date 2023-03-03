@@ -2,14 +2,35 @@
        <p>
            <% if (locals.user && locals.user.id == post.user.id){ %>
            <small>
-               <a class="delete-post-button"  href="/posts/destroy/<%= post.id %>">X</a>
+               <a class="delete-post-button"  href="/posts/destroy/<%= post.id %>">
+            <img src="https://cdn-icons-png.flaticon.com/128/3405/3405244.png"
+                height="22px" width="22px">
+               </a>
            </small>
            <% } %>
-           <%= post.content %>
-           <br>
+          <span style="font-size: 22px; font-weight: 600; font-family: 'Times New Roman', Times, serif;" > <%= post.content %> </span>
+            
            <small>
-               <%= post.user.name %>
+            <span style="font-size: 18px; font-weight: 800; font-family: 'Times New Roman', Times, serif;" >
+               - <%= post.user.name %>
+               </span>
            </small>
+        <br>
+        <br>
+         <small >
+             <% if (locals.user) { %> 
+                <a style="font-size: 18px; 
+                text-decoration: none; color: black; font-weight: 500;"
+                class="toggle-like-button" data-likes="<%= post.likes.length %>" 
+                href="/likes/toggle/?id=<%=post._id%>&type=Post"> <%= post.likes.length %><img src="https://cdn-icons-png.flaticon.com/128/1077/1077035.png"
+                height="18px" width="18px" style="margin-left:7px"></a>
+                <% } else { %>
+            <span style="font-size: 18px; text-decoration: none; color: black; 
+            font-weight: 500;"> <%= post.likes.length %><img src="https://cdn-icons-png.flaticon.com/128/1077/1077035.png"
+                        height="18px" width="18px" style="margin-left:7px">
+                       </span>
+                    <% } %> 
+         </small>
        </p>
        <div class="post-comments">
            <% if (locals.user){ %>

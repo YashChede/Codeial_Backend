@@ -12,7 +12,7 @@
         
             <div id="posts-list-container">
                 <ul>
-                    <% for(post of posts) { %>
+                    <% for(post of posts){ %>
                         
                     <%- include('_post') -%>
                         
@@ -23,10 +23,11 @@
         
         
         <section id="user-friends">
-            <h4>Friends</h4>
+           <div id="f-heading"> FRIENDS </div> 
             <% for(u of all_users){%>
                 <p>
-                    <a href="/users/profile/<%= u.id %>"><%= u.name %></a>
+                    <img src="https://cdn-icons-png.flaticon.com/128/747/747376.png"
+                    height="22px" width="22px" style="margin-right: 10px;"><a href="/users/profile/<%= u.id %>"><%= u.name %></a>
                 </p>
             <% } %>
         </section>
@@ -36,3 +37,11 @@
 <script src="/js/home_post_comments.js" ></script>
 <script src="/js/home_posts.js"></script>
 
+<!-- CHANGE :: import the script file for toggle likes, also run it over for the already present posts and comments on the page -->
+<script src="js/toggle_likes.js"></script>
+<script>
+    $('.toggle-like-button').each(function(){
+        let self = this;
+        let toggleLike = new ToggleLike(self);
+    });
+</script>
